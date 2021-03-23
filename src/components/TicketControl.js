@@ -2,34 +2,36 @@ import React from 'react';
 import NewTicketForm from './NewTicketForm';
 import TicketList from './TicketList';
 
+
+let array = [<NewTicketForm />, "Have you gone through all the steps on the Learn How to Program debugging lesson?", "Have you asked another pair for help?", "Have you spent 15 minutes going through through the problem documenting every step?", <TicketList />];
+
 class TicketControl extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      formVisibleOnPage: false
+      steps: 0
     }
   }
 
   handleClick = () => {
-    this.setState(prevState => ({
-      formVisibleOnPage: !prevState.formVisibleOnPage
-    }));
+
+    this.setState(prevState => {
+      const next = prevState.steps >= 4 ? 0 : ++prevState.steps;
+      return ({
+        steps: next
+      })
+    }
+    );
   };
 
   render() {
-    let currentlyVisibleState = null;
-    if (this.state.formVisibleOnPage) {
-      currentlyVisibleState = <NewTicketForm />;
-    }
-    else {
-      currentlyVisibleState = <TicketList />;
-      
-    }
+    const currentlyVisibleState = array[this.state.steps];
+
     return (
       <React.Fragment>
-        {currentlyVisibleState}
-        <button onClick={this.handleClick}>Add ticket</button>
+        <div>{currentlyVisibleState}</div>
+        <button onClick={this.handleClick}>{(this.state.steps > 0 && this.state.steps != 4) ? "Yes" : "Add ticket"}</button>
       </React.Fragment>
     );
   }
