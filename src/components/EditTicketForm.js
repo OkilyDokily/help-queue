@@ -15,7 +15,6 @@ function EditTicketForm(props) {
     });
   }
 
-
   return (
     <React.Fragment>
       <ReusableForm

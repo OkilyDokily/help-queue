@@ -11,9 +11,7 @@ function NewTicketForm(props) {
     props.onNewTicketCreation({ names: event.target.names.value, location: event.target.location.value, issue: event.target.issue.value, id: v4() });
   }
 
-
-  return (
-    
+  return (    
       <React.Fragment>
         <ReusableForm
           formSubmissionHandler={handleNewTicketFormSubmission}
@@ -25,6 +23,5 @@ function NewTicketForm(props) {
 NewTicketForm.propTypes = {
   onNewTicketCreation: PropTypes.func
 };
-
 
 export default NewTicketForm;
